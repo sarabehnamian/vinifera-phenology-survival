@@ -34,9 +34,13 @@ The analysis is organized into a sequential pipeline of Python scripts:
 
 ## Data Sources
 
-- **Phenology Data**: Observational data on grapevine phenological events
+- **Phenology Data**: We monitored 7 individual European grapevine (Vitis vinifera L.) plants across 5 sites, yielding 41,274 phenophase status observations between 30 March 2012 and 16 May 2025. These observations were collected by 16 observers using the USA–NPN Status & Intensity protocol. Although 41,274 daily records were available, interval-censoring requires collapsing them to one record per phenophase transition.
 - **Weather Data**: NASA POWER meteorological data including temperature, precipitation, and other climate variables
 - **Survival Data**: Information on vine survival and mortality events
+
+### Data Availability
+
+**Note**: The phenological observation data used in this analysis is not publicly available due to data sharing restrictions. Researchers interested in accessing the data should contact the authors directly to discuss potential collaboration or data sharing agreements.
 
 ## Key Features
 
@@ -102,4 +106,7 @@ If you use this analysis pipeline in your research, please cite:
 
 ## Contact
 
-For questions or collaboration opportunities, please contact the repository maintainer.
+For questions or collaboration opportunities, please contact:
+
+**Sara Behnamian**  
+Email: sara.behnamian@sund.ku.dk
