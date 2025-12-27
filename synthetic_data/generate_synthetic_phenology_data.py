@@ -20,7 +20,7 @@ import pandas as pd
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = SCRIPT_DIR
-OUTPUT_CSV = OUTPUT_DIR / "status_intensity_observation_data.csv"
+OUTPUT_CSV = OUTPUT_DIR / "synthetic_status_intensity_observation_data.csv"
 
 # Synthetic data parameters
 N_SITES = 5

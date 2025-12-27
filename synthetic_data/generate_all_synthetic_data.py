@@ -19,7 +19,7 @@ import pandas as pd
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 SYNTHETIC_DATA_DIR = SCRIPT_DIR
-SYNTHETIC_OBS_FILE = SYNTHETIC_DATA_DIR / "status_intensity_observation_data.csv"
+SYNTHETIC_OBS_FILE = SYNTHETIC_DATA_DIR / "synthetic_status_intensity_observation_data.csv"
 
 # Set random seed for reproducibility
 np.random.seed(42)
@@ -388,7 +388,7 @@ def main():
             else:
                 df = generator_func()
             
-            output_path = SYNTHETIC_DATA_DIR / filename
+            output_path = SYNTHETIC_DATA_DIR / f"synthetic_{filename}"
             df.to_csv(output_path, index=False)
             print(f"    Saved {len(df)} rows to {output_path.name}")
         except Exception as e:
