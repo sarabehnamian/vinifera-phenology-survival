@@ -1,0 +1,10 @@
+Intensity_Category_ID,Intensity_Category_Name,Intensity_Question,Intensity_Value_Options
+39,Breaking leaf buds,How many buds are breaking?,Less than 3; 3 to 10; More than 10
+40,Leaves,What proportion of the canopy is full with leaves?,Less than 5%; 5-24%; 25-49%; 50-74%; 75-94%; 95% or more
+41,Increasing leaf size,What proportion of full size are most leaves?,25-49%; 50-74%; 75-94%; 95% or more; Less than 25%
+42,Colored leaves,What proportion of the canopy is still full with green leaves?,Less than 5%; 5-24%; 25-49%; 50-74%; 75-94%; 95% or more
+48,Flowers or flower buds,How many flowers or flower buds are present?,"Less than 3; 3 to 10; 11 to 100; 101 to 1,000; More than 1,000"
+50,Open flowers,How many open flowers are present?,"Less than 3; 3 to 10; 11 to 100; 101 to 1,000; More than 1,000"
+56,Fruits,How many fruits are present?,"Less than 3; 3 to 10; 11 to 100; 101 to 1,000; More than 1,000"
+58,Ripe fruits,How many ripe fruits are present?,"Less than 3; 3 to 10; 11 to 100; 101 to 1,000; More than 1,000"
+59,Recent fruit or seed drop,How many fruits or seeds have dropped recently?,"Less than 3; 3 to 10; 11 to 100; 101 to 1,000; More than 1,000"

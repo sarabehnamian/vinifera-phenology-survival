@@ -1,0 +1,2 @@
+Dataset_ID,Dataset_Name,Dataset_Description,Contact_Name,Contact_Institution,Contact_Email,Contact_Phone,Contact_Address,Dataset_Comments,Dataset_Documentation_URL
+-9999,Synthetic Dataset,Synthetic phenology data for reproducibility,Synthetic Data Generator,USA-NPN,synthetic@usanpn.org,,,This is synthetic data generated for workflow reproduction,
