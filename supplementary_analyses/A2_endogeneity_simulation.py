@@ -1,17 +1,14 @@
-# RE1_A2_endogeneity_simulation.py
+# A2_endogeneity_simulation.py
 """
-Reviewer 1, Comment A2: "Endogeneity story is not cleanly developed"
-====================================================================
-"The logic should be much more linear and formally demonstrated,
-ideally with a small simulation where the true effect is known."
-
+Endogeneity Bias Simulation
+===========================
 This simulation:
 1. Generates data with KNOWN true effect (heat accelerates phenology, TR = 0.85)
 2. Shows exogenous (fixed-window) covariates recover the true effect
 3. Shows endogenous (to-event) covariates produce BIASED estimates (TR > 1)
 4. Quantifies the bias magnitude with 1000 replications
 
-Outputs: revision/RE1_A2_results/
+Outputs: supplementary_analyses/A2_results/
 """
 
 import sys
@@ -28,7 +25,7 @@ except:
 
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
-OUT_DIR = PROJECT / "revision" / "RE1_A2_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A2_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -148,7 +145,7 @@ def fit_aft_simple(df, cov_col):
 def run_simulation():
     """Run simulation study."""
     print("="*60)
-    print("RE1_A2: Endogeneity Bias Simulation")
+    print("A2: Endogeneity Bias Simulation")
     print("="*60)
     print(f"\nTrue effect: TR = {TRUE_TR} (heat accelerates phenology)")
     print(f"Running {N_SIMULATIONS} simulations with n={N_OBSERVATIONS}...")
@@ -283,11 +280,11 @@ def main():
     summary = analyze_results(results_df)
     
     # Plot
-    plot_path = OUT_DIR / "RE1_A2_bias_demonstration.png"
+    plot_path = OUT_DIR / "A2_bias_demonstration.png"
     create_plot(results_df, summary, plot_path)
     
     # Save to Excel
-    out_xlsx = OUT_DIR / "RE1_A2_simulation_results.xlsx"
+    out_xlsx = OUT_DIR / "A2_simulation_results.xlsx"
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         results_df.to_excel(xw, index=False, sheet_name="simulation_results")
@@ -307,12 +304,12 @@ def main():
     
     print(f"\nResults saved: {out_xlsx}")
     
-    # Text for response to reviewers
+    # Summary
     print(f"\n{'='*60}")
-    print("TEXT FOR RESPONSE TO REVIEWERS:")
+    print("SIMULATION SUMMARY:")
     print(f"{'='*60}")
     print(f"""
-Following the reviewer's suggestion, we conducted a simulation study 
+We conducted a simulation study 
 with {N_SIMULATIONS} replications (n = {N_OBSERVATIONS} each) to formally demonstrate 
 the endogeneity bias. The true effect was set to TR = {TRUE_TR}, meaning 
 a +1 SD increase in pre-season heat accelerates phenology by 15%.

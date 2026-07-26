@@ -1,15 +1,13 @@
-# RE2_Q4_missing_weather_bias.py
+# Q4_missing_weather_bias.py
 """
-Reviewer 2, Question 4: Missing Weather Data Bias Check
-========================================================
-"Does this not mean that the cumulative measures are underestimated then?"
-
+Missing Weather Data Bias Check
+================================
 This script explicitly checks whether missing weather data causes bias in cumulative measures
 by comparing:
 1. Cumulative measures computed with missing data (current approach)
 2. Cumulative measures computed with imputed data (forward-fill interpolation)
 
-Outputs: revision/RE2_Q4_bias_results/
+Outputs: supplementary_analyses/Q4_bias_results/
 """
 
 import sys
@@ -27,7 +25,7 @@ except:
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
 WEATHER_DATA = PROJECT / "02_fetch_nasa_power_weather" / "site_daily_weather.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE2_Q4_bias_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "Q4_bias_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -290,7 +288,7 @@ def analyze_bias():
     create_bias_plots(combined_df)
     
     # Save results
-    out_xlsx = OUT_DIR / "RE2_Q4_missing_weather_bias.xlsx"
+    out_xlsx = OUT_DIR / "Q4_missing_weather_bias.xlsx"
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         combined_df.to_excel(xw, index=False, sheet_name="all_results")
         
@@ -413,7 +411,7 @@ def create_bias_plots(df):
     plt.suptitle('Missing Weather Data Bias Analysis', fontsize=14, fontweight='bold', y=0.995)
     plt.tight_layout(rect=[0, 0, 1, 0.99])
     
-    out_png = OUT_DIR / "RE2_Q4_bias_analysis.png"
+    out_png = OUT_DIR / "Q4_bias_analysis.png"
     fig.savefig(out_png, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"\nSaved plot: {out_png.name}")

@@ -1,22 +1,14 @@
-# RE1_S2_model_priority.py
+# S2_model_priority.py
 """
-Reviewer 1, Comment S2: "Unclear priority among multiple models"
-================================================================
-"Different parts of the Results section describe:
-- Multivariate AFT models with to-cutoff covariates;
-- Univariate fixed-window models;
-- Bivariate fixed-window models.
-It remains unclear which model(s) the authors consider their primary inference 
-model(s). There should be a clear statement: 'Our main model is X for reason Y; 
-models A and B are only diagnostic / sensitivity analyses.'"
-
+Model Priority and Classification
+=================================
 This script provides:
 1. Comprehensive comparison of all model types
 2. AIC/BIC ranking to identify primary model
 3. Clear justification for model selection
 4. Classification of models as primary vs diagnostic/sensitivity
 
-Outputs: revision/RE1_S2_results/
+Outputs: supplementary_analyses/S2_results/
 """
 
 import sys
@@ -32,7 +24,7 @@ except:
 
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
-OUT_DIR = PROJECT / "revision" / "RE1_S2_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "S2_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Model result files
@@ -41,8 +33,8 @@ UNIVARIATE = PROJECT / "10_refit_simple_models" / "interval_model_results_simple
 BIVARIATE = PROJECT / "12_bivariate_fixed_window" / "interval_model_results_bivariate.xlsx"
 
 # Outputs
-OUT_XLSX = OUT_DIR / "RE1_S2_model_priority_comparison.xlsx"
-OUT_PLOT = OUT_DIR / "RE1_S2_model_comparison.png"
+OUT_XLSX = OUT_DIR / "S2_model_priority_comparison.xlsx"
+OUT_PLOT = OUT_DIR / "S2_model_comparison.png"
 
 # ---- Style ----
 plt.rcParams['figure.dpi'] = 300
@@ -389,7 +381,7 @@ def create_comparison_plot(df, outpath):
 
 def main():
     print("="*70)
-    print("RE1_S2: Model Priority and Classification")
+    print("S2: Model Priority and Classification")
     print("="*70)
     print("\nAddresses: 'Unclear priority among multiple models'")
     
@@ -495,7 +487,7 @@ def main():
         # README
         readme_text = [
             "MODEL PRIORITY AND CLASSIFICATION",
-            "Addresses: 'Unclear priority among multiple models' (Reviewer 1, S2)",
+            "Addresses the concern",
             "",
             "MODEL TYPES COMPARED:",
             "1. Multivariate (to-cutoff): AFT with 4 endogenous covariates (GDD, precip, frost, heat to event)",
@@ -519,12 +511,12 @@ def main():
         pd.DataFrame({"README": readme_text}).to_excel(xw, index=False, sheet_name="README")
     
     print(f"\n{'='*70}")
-    print("RE1_S2 COMPLETE")
+    print("S2 COMPLETE")
     print(f"{'='*70}")
     print(f"\nOutputs:")
     print(f"  Excel: {OUT_XLSX}")
     print(f"  Plot: {OUT_PLOT.name}")
-    print(f"\nKey message for reviewer:")
+    print(f"\nKEY FINDINGS:")
     print(f"  → Primary model clearly identified based on BIC and covariate type")
     print(f"  → Diagnostic models (endogenous) clearly separated from inference models")
     print(f"  → Clear justification provided for model selection")

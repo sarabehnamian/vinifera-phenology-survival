@@ -1,7 +1,7 @@
-# RE2_P3_uncertain_observations.py
+# P3_uncertain_observations.py
 """
-Reviewer 2, Point 3: Effect of excluding uncertain observations on timing information.
-
+Effect of Excluding Uncertain Observations on Timing Information
+=================================================================
 Question addressed:
 - How does excluding uncertain observations affect the timing information for each year?
 - What is the impact on interval construction and survival endpoints?
@@ -16,7 +16,7 @@ warnings.filterwarnings('ignore')
 
 # ==================== PATHS ====================
 SCRIPT_DIR = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = SCRIPT_DIR / "revision" / "RE2_P3_results"
+OUTPUT_DIR = SCRIPT_DIR / "supplementary_analyses" / "P3_results"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Data files
@@ -24,8 +24,8 @@ OBS_DATA = SCRIPT_DIR / "data" / "status_intensity_observation_data.csv"
 SURV_DATA = SCRIPT_DIR / "03_merge_survival_with_weather" / "survival_with_weather.xlsx"
 
 # Output files
-OUT_XLSX = OUTPUT_DIR / "RE2_P3_uncertain_observations_analysis.xlsx"
-OUT_PNG = OUTPUT_DIR / "RE2_P3_uncertain_impact.png"
+OUT_XLSX = OUTPUT_DIR / "P3_uncertain_observations_analysis.xlsx"
+OUT_PNG = OUTPUT_DIR / "P3_uncertain_impact.png"
 
 # Colors
 COLOR_FLOWERS = '#E8743B'
@@ -245,7 +245,7 @@ def create_impact_plot(summary_by_phase_year, impact_df, output_path):
 # ==================== MAIN ====================
 def main():
     print("=" * 60)
-    print("RE2_P3: Uncertain Observations Impact Analysis")
+    print("P3: Uncertain Observations Impact Analysis")
     print("=" * 60)
     
     # Analyze uncertain observations

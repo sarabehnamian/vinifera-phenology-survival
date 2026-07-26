@@ -1,10 +1,7 @@
-# RE1_A1_systematic_comparison.py
+# A1_systematic_comparison.py
 """
-Reviewer 1, Comment A1: "No real methodological novelty"
-========================================================
-"There is no new estimator, no new model class, no theoretical results,
-and no systematic comparison to alternatives."
-
+Systematic Comparison to Alternative Methods
+============================================
 This script provides SYSTEMATIC COMPARISON TO ALTERNATIVES:
 1. First-date OLS (naive - discards censored observations)
 2. Midpoint OLS (naive - ignores censoring structure)
@@ -19,7 +16,7 @@ Key outputs:
 - AIC/BIC for principled model selection
 - Median DOY comparison across methods
 
-Outputs: revision/RE1_A1_results/
+Outputs: supplementary_analyses/A1_results/
 """
 
 import sys
@@ -34,9 +31,9 @@ except:
     pass
 
 # ---- Paths ----
-PROJECT = Path(__file__).resolve().parent.parent  # Go up from revision/ to project root
+PROJECT = Path(__file__).resolve().parent.parent  # Go up from supplementary_analyses/ to project root
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_A1_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A1_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -537,7 +534,7 @@ def print_table(results, sheet_name):
 
 def main():
     print("="*70)
-    print("RE1_A1: Systematic Comparison to Alternative Methods")
+    print("A1: Systematic Comparison to Alternative Methods")
     print("="*70)
     
     all_results = []
@@ -581,13 +578,13 @@ def main():
         print_table(results, sheet)
         
         # Plot
-        plot_path = OUT_DIR / f"RE1_A1_comparison_{sheet}.png"
+        plot_path = OUT_DIR / f"A1_comparison_{sheet}.png"
         create_comparison_plot(results, sheet, plot_path)
         
         all_results.extend(results)
     
     # Save to Excel
-    out_xlsx = OUT_DIR / "RE1_A1_systematic_comparison.xlsx"
+    out_xlsx = OUT_DIR / "A1_systematic_comparison.xlsx"
     summary_df = pd.DataFrame(all_results)
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
@@ -605,7 +602,7 @@ def main():
     
     # Key message
     print("\n" + "="*70)
-    print("KEY MESSAGE FOR REVIEWER:")
+    print("KEY FINDINGS:")
     print("="*70)
     first_date = [r for r in all_results if r["method"] == "First-date OLS" and "success" in str(r.get("status",""))]
     if first_date:

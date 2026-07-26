@@ -1,13 +1,7 @@
-# RE1_A3_diagnostics.py
+# A3_diagnostics.py
 """
-Reviewer 1, Comment A3: "Diagnostics and model checking are minimal"
-=====================================================================
-"For a statistics journal, I would expect:
-- Comparison to non-parametric interval-censored estimators (Turnbull) [see A1]
-- Examination of goodness-of-fit (e.g., residuals, QQ-plots, hazard shapes)
-- Discussion of robustness to distributional mis-specification
-- Principled justification for model selection"
-
+Model Diagnostics and Goodness-of-Fit Assessment
+================================================
 This script provides:
 1. Cox-Snell residuals for Weibull and Log-Logistic models
 2. QQ-plots for distributional fit
@@ -15,7 +9,7 @@ This script provides:
 4. AIC/BIC comparison for model selection
 5. Predicted vs observed comparison
 
-Outputs: revision/RE1_A3_results/
+Outputs: supplementary_analyses/A3_results/
 """
 
 import sys
@@ -33,7 +27,7 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_A3_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A3_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -362,7 +356,7 @@ def create_model_selection_table(all_results):
 
 def main():
     print("="*70)
-    print("RE1_A3: Diagnostics and Model Checking")
+    print("A3: Diagnostics and Model Checking")
     print("="*70)
     
     all_model_results = {}
@@ -403,7 +397,7 @@ def main():
             
             if residuals is not None:
                 # QQ plot
-                qq_path = OUT_DIR / f"RE1_A3_qq_{model_name.lower()}_{sheet}.png"
+                qq_path = OUT_DIR / f"A3_qq_{model_name.lower()}_{sheet}.png"
                 create_qq_plot(residuals, events, model_name, sheet, qq_path)
                 
                 # Store diagnostics
@@ -416,15 +410,15 @@ def main():
                 })
         
         # Hazard plot
-        hazard_path = OUT_DIR / f"RE1_A3_hazard_{sheet}.png"
+        hazard_path = OUT_DIR / f"A3_hazard_{sheet}.png"
         create_hazard_plot(model_results, sheet, hazard_path)
         
         # Survival comparison plot
-        surv_path = OUT_DIR / f"RE1_A3_survival_comparison_{sheet}.png"
+        surv_path = OUT_DIR / f"A3_survival_comparison_{sheet}.png"
         create_survival_comparison_plot(df, model_results, sheet, surv_path)
     
     # Save results
-    out_xlsx = OUT_DIR / "RE1_A3_diagnostics.xlsx"
+    out_xlsx = OUT_DIR / "A3_diagnostics.xlsx"
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         # Model selection table
@@ -436,9 +430,9 @@ def main():
         
         # README
         readme = [
-            "RE1_A3: Diagnostics and Model Checking",
+            "A3: Diagnostics and Model Checking",
             "",
-            "Addresses reviewer concern about minimal diagnostics.",
+            "Comprehensive diagnostics and model checking.",
             "",
             "Contents:",
             "1. model_selection: AIC/BIC comparison for Weibull vs Log-Logistic",

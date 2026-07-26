@@ -1,20 +1,14 @@
-# RE1_S4_observation_process.py
+# S4_observation_process.py
 """
-Reviewer 1, Comment S4: "No treatment of observation process"
-==============================================================
-"The USA–NPN observation process (visit frequency, missed visits) is briefly 
-mentioned, but the potential dependence between observation intensity and 
-covariates (e.g., season, site) is not seriously considered.
-
-In principle, this could create informative censoring, which is not addressed."
-
+Observation Process and Informative Censoring Analysis
+======================================================
 This script provides:
 1. Analysis of visit frequency patterns by site and season
 2. Assessment of potential informative censoring
 3. Correlation between observation intensity and covariates
 4. Evaluation of whether censoring is independent of covariates
 
-Outputs: revision/RE1_S4_results/
+Outputs: supplementary_analyses/S4_results/
 """
 
 import sys
@@ -32,12 +26,12 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_S4_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "S4_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Outputs
-OUT_XLSX = OUT_DIR / "RE1_S4_observation_process_analysis.xlsx"
-OUT_PLOT = OUT_DIR / "RE1_S4_observation_patterns.png"
+OUT_XLSX = OUT_DIR / "S4_observation_process_analysis.xlsx"
+OUT_PLOT = OUT_DIR / "S4_observation_patterns.png"
 
 # ---- Style ----
 plt.rcParams['figure.dpi'] = 300
@@ -233,7 +227,7 @@ def create_observation_plot(df, results_dict, sheet_name, outpath):
 
 def main():
     print("="*70)
-    print("RE1_S4: Observation Process and Informative Censoring Analysis")
+    print("S4: Observation Process and Informative Censoring Analysis")
     print("="*70)
     print("\nAddresses: 'No treatment of observation process'")
     print("           'Potential dependence between observation intensity and covariates'")
@@ -289,7 +283,7 @@ def main():
         all_results.append(results)
         
         # Create plot
-        plot_path = OUT_DIR / f"RE1_S4_observation_patterns_{sheet_name}.png"
+        plot_path = OUT_DIR / f"S4_observation_patterns_{sheet_name}.png"
         create_observation_plot(df, results, sheet_name, plot_path)
     
     # Save to Excel
@@ -337,7 +331,7 @@ def main():
         # README
         readme_text = [
             "OBSERVATION PROCESS AND INFORMATIVE CENSORING ANALYSIS",
-            "Addresses: 'No treatment of observation process' (Reviewer 1, S4)",
+            "Addresses the concern",
             "",
             "ANALYSES PERFORMED:",
             "1. Censoring rate by site (spatial patterns)",
@@ -364,12 +358,12 @@ def main():
         pd.DataFrame({"README": readme_text}).to_excel(xw, index=False, sheet_name="README")
     
     print(f"\n{'='*70}")
-    print("RE1_S4 COMPLETE")
+    print("S4 COMPLETE")
     print(f"{'='*70}")
     print(f"\nOutputs:")
     print(f"  Excel: {OUT_XLSX}")
-    print(f"  Plots: RE1_S4_observation_patterns_*.png")
-    print(f"\nKey message for reviewer:")
+    print(f"  Plots: S4_observation_patterns_*.png")
+    print(f"\nKEY FINDINGS:")
     print(f"  → Observation patterns analyzed by site, year, and season")
     print(f"  → Informative censoring test performed")
     print(f"  → Censoring appears independent of timing (non-informative)")

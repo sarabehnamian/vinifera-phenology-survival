@@ -1,18 +1,14 @@
-# RE1_S3_interval_width_analysis.py
+# S3_interval_width_analysis.py
 """
-Reviewer 1, Comment S3: "No explicit discussion of interval width and information content"
-===========================================================================================
-"Interval lengths (R − L) affect information content: wide intervals carry less information.
-The manuscript does not describe summary statistics of interval widths or explore whether
-model fit differs between narrow vs wide intervals."
-
+Interval Width and Information Content Analysis
+===============================================
 This script provides:
 1. Summary statistics of interval widths
 2. Distribution of interval widths
 3. Relationship between interval width and observation timing
 4. Impact of interval width on estimation precision
 
-Outputs: revision/RE1_S3_results/
+Outputs: supplementary_analyses/S3_results/
 """
 
 import sys
@@ -30,7 +26,7 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_S3_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "S3_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -240,7 +236,7 @@ def print_summary_table(data_dict):
 
 def main():
     print("="*70)
-    print("RE1_S3: Interval Width Analysis")
+    print("S3: Interval Width Analysis")
     print("="*70)
     
     data_dict = {}
@@ -257,17 +253,17 @@ def main():
     # Create plots
     print("\nCreating plots...")
     
-    dist_path = OUT_DIR / "RE1_S3_interval_distribution.png"
+    dist_path = OUT_DIR / "S3_interval_distribution.png"
     create_interval_distribution_plot(data_dict, dist_path)
     
-    timing_path = OUT_DIR / "RE1_S3_width_vs_timing.png"
+    timing_path = OUT_DIR / "S3_width_vs_timing.png"
     create_width_vs_timing_plot(data_dict, timing_path)
     
-    cat_path = OUT_DIR / "RE1_S3_width_categories.png"
+    cat_path = OUT_DIR / "S3_width_categories.png"
     create_width_category_plot(data_dict, cat_path)
     
     # Save to Excel
-    out_xlsx = OUT_DIR / "RE1_S3_interval_width_analysis.xlsx"
+    out_xlsx = OUT_DIR / "S3_interval_width_analysis.xlsx"
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         # Summary statistics
@@ -286,9 +282,9 @@ def main():
         
         # README
         readme = [
-            "RE1_S3: Interval Width Analysis",
+            "S3: Interval Width Analysis",
             "",
-            "Addresses reviewer concern: 'No explicit discussion of interval width and information content'",
+            "Addresses: 'No explicit discussion of interval width and information content'",
             "",
             "Key findings:",
             f"- Open flowers: median interval width = {data_dict['open_flowers'][0]['interval_median']:.1f} days",

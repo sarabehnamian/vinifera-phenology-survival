@@ -71,7 +71,7 @@ The original sequential pipeline of Python scripts (00-15) is also available for
 
 **Note**: The phenological observation data used in this analysis is not publicly available due to data sharing restrictions. Researchers interested in accessing the data should contact the authors directly to discuss potential collaboration or data sharing agreements.
 
-**Synthetic Data**: Synthetic data mimicking the structure of the real data is available in `synthetic_data/` and `revision/synthetic_data/` for reproducibility purposes.
+**Synthetic Data**: Synthetic data mimicking the structure of the real data is available in `synthetic_data/` and `supplementary_analyses/synthetic_data/` for reproducibility purposes.
 
 ## Key Features
 

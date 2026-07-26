@@ -1,11 +1,7 @@
-# RE1_A5_frailty_models.py
+# A5_frailty_models.py
 """
-Reviewer 1, Comment A5: "No hierarchical structure / frailty models"
-=====================================================================
-"Plants are nested within sites and years, yet the analysis treats plant–site–years 
-as independent. For EES, at least a discussion of frailty / random effect models, 
-or why they are not used, is necessary."
-
+Hierarchical Structure and Frailty Models Analysis
+==================================================
 This script provides:
 1. Analysis of the hierarchical structure (sites, years, individuals)
 2. Attempt to fit shared frailty models
@@ -15,7 +11,7 @@ This script provides:
 Note: lifelines does not support frailty for interval-censored data.
 We use alternative approaches to assess clustering effects.
 
-Outputs: revision/RE1_A5_results/
+Outputs: supplementary_analyses/A5_results/
 """
 
 import sys
@@ -33,7 +29,7 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_A5_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A5_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -266,7 +262,7 @@ def print_icc_summary(variance_components, sheet_name):
 
 def main():
     print("="*70)
-    print("RE1_A5: Frailty/Hierarchical Structure Analysis")
+    print("A5: Frailty/Hierarchical Structure Analysis")
     print("="*70)
     
     all_results = {}
@@ -295,7 +291,7 @@ def main():
             print(f"    SE inflation factor: {mixed_res['se_inflation']:.2f}x")
         
         # Create visualization
-        plot_path = OUT_DIR / f"RE1_A5_clustering_{sheet}.png"
+        plot_path = OUT_DIR / f"A5_clustering_{sheet}.png"
         create_clustering_visualization(df, sheet, plot_path)
         
         all_results[sheet] = {
@@ -305,7 +301,7 @@ def main():
         }
     
     # Save results
-    out_xlsx = OUT_DIR / "RE1_A5_frailty_analysis.xlsx"
+    out_xlsx = OUT_DIR / "A5_frailty_analysis.xlsx"
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         # Structure summary
@@ -345,9 +341,9 @@ def main():
         
         # README
         readme = [
-            "RE1_A5: Frailty/Hierarchical Structure Analysis",
+            "A5: Frailty/Hierarchical Structure Analysis",
             "",
-            "Addresses reviewer concern about ignoring nested structure.",
+            "Addresses concerns about nested structure.",
             "",
             "Approach:",
             "1. Document the hierarchical structure (sites, individuals, years)",
@@ -372,9 +368,9 @@ def main():
     print(f"Results saved: {out_xlsx}")
     print(f"{'='*70}")
     
-    # Text for response to reviewers
+    # Summary
     print("\n" + "="*70)
-    print("TEXT FOR RESPONSE TO REVIEWERS:")
+    print("SUMMARY:")
     print("="*70)
     
     # Get average ICCs across endpoints

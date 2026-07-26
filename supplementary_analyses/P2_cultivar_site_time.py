@@ -1,7 +1,7 @@
-# RE2_P2_cultivar_site_time.py
+# P2_cultivar_site_time.py
 """
-Reviewer 2, Point 2: Cultivar information, site dispersion, and time imbalance.
-
+Cultivar Information, Site Dispersion, and Time Imbalance
+==========================================================
 Questions addressed:
 - Are all 7 plants the same cultivar?
 - How dispersed were the sites?
@@ -19,7 +19,7 @@ warnings.filterwarnings('ignore')
 
 # ==================== PATHS ====================
 SCRIPT_DIR = Path(__file__).resolve().parent.parent
-OUTPUT_DIR = SCRIPT_DIR / "revision" / "RE2_P2_results"
+OUTPUT_DIR = SCRIPT_DIR / "supplementary_analyses" / "P2_results"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Data files
@@ -29,9 +29,9 @@ SITE_DATA = SCRIPT_DIR / "data" / "ancillary_site_data.csv"
 OBS_DATA = SCRIPT_DIR / "data" / "status_intensity_observation_data.csv"
 
 # Output files
-OUT_XLSX = OUTPUT_DIR / "RE2_P2_cultivar_site_time_analysis.xlsx"
-OUT_PNG_SITES = OUTPUT_DIR / "RE2_P2_site_dispersion.png"
-OUT_PNG_HEATMAP = OUTPUT_DIR / "RE2_P2_time_heatmap.png"
+OUT_XLSX = OUTPUT_DIR / "P2_cultivar_site_time_analysis.xlsx"
+OUT_PNG_SITES = OUTPUT_DIR / "P2_site_dispersion.png"
+OUT_PNG_HEATMAP = OUTPUT_DIR / "P2_time_heatmap.png"
 
 # Distinct color palette for sites
 SITE_COLORS = ['#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6']
@@ -251,7 +251,7 @@ def create_time_heatmap(site_year_summary, output_path):
 # ==================== MAIN ====================
 def main():
     print("=" * 60)
-    print("RE2_P2: Cultivar, Site Dispersion, and Time Imbalance Analysis")
+    print("P2: Cultivar, Site Dispersion, and Time Imbalance Analysis")
     print("=" * 60)
     
     # 1. Cultivar analysis
@@ -314,7 +314,7 @@ def main():
     print(f"   Saved: {OUT_XLSX}")
     
     print("\n" + "=" * 60)
-    print("KEY FINDINGS FOR REVIEWER 2:")
+    print("KEY FINDINGS:")
     print("=" * 60)
     print(f"""
 1. CULTIVAR: All {cultivar_info['n_individuals']} plants are Vitis riparia (wild grape).

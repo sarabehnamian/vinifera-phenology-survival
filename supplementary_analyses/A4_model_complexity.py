@@ -1,14 +1,7 @@
-# RE1_A4_model_complexity.py
+# A4_model_complexity.py
 """
-Reviewer 1, Comment A4: "Sample size and model complexity"
-==========================================================
-"With only 50 plant–site–years, fitting multivariate AFT models with several 
-standardized covariates is statistically fragile. The authors briefly acknowledge 
-low power but largely proceed as if the estimates were robust.
-
-There is no discussion of over-fitting, effective number of parameters, or 
-uncertainty inflation in such small samples."
-
+Sample Size and Model Complexity Analysis
+=========================================
 This script provides:
 1. Effective number of parameters calculation
 2. Over-fitting assessment (AIC/BIC vs sample size)
@@ -16,7 +9,7 @@ This script provides:
 4. Power analysis for detecting effects
 5. Comparison of model complexity vs sample size
 
-Outputs: revision/RE1_A4_results/
+Outputs: supplementary_analyses/A4_results/
 """
 
 import sys
@@ -34,12 +27,12 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_A4_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A4_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Outputs
-OUT_XLSX = OUT_DIR / "RE1_A4_model_complexity_analysis.xlsx"
-OUT_PLOT = OUT_DIR / "RE1_A4_complexity_assessment.png"
+OUT_XLSX = OUT_DIR / "A4_model_complexity_analysis.xlsx"
+OUT_PLOT = OUT_DIR / "A4_complexity_assessment.png"
 
 # ---- Style ----
 plt.rcParams['figure.dpi'] = 300
@@ -303,7 +296,7 @@ def create_complexity_plot(df, outpath):
 
 def main():
     print("="*70)
-    print("RE1_A4: Model Complexity and Sample Size Analysis")
+    print("A4: Model Complexity and Sample Size Analysis")
     print("="*70)
     print("\nAddresses: 'No discussion of over-fitting, effective number of")
     print("parameters, or uncertainty inflation in such small samples'")
@@ -392,7 +385,7 @@ def main():
         # README
         readme_text = [
             "MODEL COMPLEXITY AND SAMPLE SIZE ANALYSIS",
-            "Addresses: 'No discussion of over-fitting, effective parameters, or uncertainty inflation' (Reviewer 1, A4)",
+            "Addresses the concern",
             "",
             "METRICS CALCULATED:",
             "1. Parameters per observation (p/n ratio)",
@@ -418,12 +411,12 @@ def main():
         pd.DataFrame({"README": readme_text}).to_excel(xw, index=False, sheet_name="README")
     
     print(f"\n{'='*70}")
-    print("RE1_A4 COMPLETE")
+    print("A4 COMPLETE")
     print(f"{'='*70}")
     print(f"\nOutputs:")
     print(f"  Excel: {OUT_XLSX}")
     print(f"  Plot: {OUT_PLOT.name}")
-    print(f"\nKey message for reviewer:")
+    print(f"\nKEY FINDINGS:")
     print(f"  → Over-fitting risk quantified (p/n ratios)")
     print(f"  → Effective parameters account for small-sample penalty")
     print(f"  → Univariate models preferred due to lower complexity")

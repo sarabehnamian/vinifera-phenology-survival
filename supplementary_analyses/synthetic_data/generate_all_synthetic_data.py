@@ -123,14 +123,14 @@ def generate_ancillary_phenophase_data() -> pd.DataFrame:
             "Phenophase_Description": "Open flowers",
             "Phenophase_Definition_IDs": "'501'",
             "Phenophase_Names": "Open flowers",
-            "Phenophase_Revision_Comments": "",
+            "Phenophase_supplementary_analyses_Comments": "",
         },
         {
             "Phenophase_ID": 390,
             "Phenophase_Description": "Ripe fruits",
             "Phenophase_Definition_IDs": "'390'",
             "Phenophase_Names": "Ripe fruits",
-            "Phenophase_Revision_Comments": "",
+            "Phenophase_supplementary_analyses_Comments": "",
         },
     ]
     return pd.DataFrame(phenophase_data)

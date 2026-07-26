@@ -1,6 +1,6 @@
-# RE1_A3b_robustness_analysis.py
+# A3b_robustness_analysis.py
 """
-Reviewer 1, Comment A3 (continued): "Robustness to distributional mis-specification"
+ "Robustness to distributional mis-specification"
 =====================================================================================
 "Discussion of robustness to distributional mis-specification, especially 
 with such a small sample (n = 50 plant–site–years)."
@@ -11,7 +11,7 @@ This script provides:
 3. Sensitivity to censoring assumptions
 4. Parameter stability across subsamples
 
-Outputs: revision/RE1_A3b_results/
+Outputs: supplementary_analyses/A3b_results/
 """
 
 import sys
@@ -30,7 +30,7 @@ except:
 # ---- Paths ----
 PROJECT = Path(__file__).resolve().parent.parent
 SURV_DATA = PROJECT / "07_validate_sensitivity" / "survival_with_weather_clean.xlsx"
-OUT_DIR = PROJECT / "revision" / "RE1_A3b_results"
+OUT_DIR = PROJECT / "supplementary_analyses" / "A3b_results"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ---- Style ----
@@ -328,7 +328,7 @@ Censoring Assumption Sensitivity:
 
 def main():
     print("="*70)
-    print("RE1_A3b: Robustness and Sensitivity Analysis")
+    print("A3b: Robustness and Sensitivity Analysis")
     print("="*70)
     
     all_results = {}
@@ -367,7 +367,7 @@ def main():
             print(f"    CV at 50% subsample: {subsample[subsample['fraction']==0.5]['cv'].values[0]:.1f}%")
         
         # Create plot
-        plot_path = OUT_DIR / f"RE1_A3b_robustness_{sheet}.png"
+        plot_path = OUT_DIR / f"A3b_robustness_{sheet}.png"
         create_robustness_plot(dist_results, leave_out, censor_sens, sheet, plot_path)
         
         all_results[sheet] = {
@@ -378,7 +378,7 @@ def main():
         }
     
     # Save results
-    out_xlsx = OUT_DIR / "RE1_A3b_robustness_analysis.xlsx"
+    out_xlsx = OUT_DIR / "A3b_robustness_analysis.xlsx"
     
     with pd.ExcelWriter(out_xlsx, engine="openpyxl") as xw:
         for sheet, res in all_results.items():
@@ -393,7 +393,7 @@ def main():
     
     # Text for response
     print("\n" + "="*70)
-    print("TEXT FOR RESPONSE TO REVIEWERS:")
+    print("SUMMARY:")
     print("="*70)
     
     flowers = all_results['open_flowers']
