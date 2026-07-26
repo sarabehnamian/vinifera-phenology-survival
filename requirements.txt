@@ -1,0 +1,39 @@
+# Environment used to produce the results reported in
+# "Fixed Pre-Season Weather Windows Eliminate Endogeneity Bias in
+#  Interval-Censored Survival Models of Grapevine Phenology"
+#
+# Python 3.11.9 (Windows)
+#
+# Install with:
+#     pip install -r requirements.txt
+#
+# Versions are pinned exactly. To run the pipeline on newer releases,
+# relax "==" to ">=", but note that the published figures and tables were
+# produced with the versions below.
+
+# --- Core: required by the vinifera_phenology package ---
+pandas==2.2.0
+numpy==1.26.4
+openpyxl==3.1.2          # pandas engine for .xlsx read/write -- VERIFY THIS VERSION
+requests==2.32.5         # NASA POWER API queries (02_..., vinifera_phenology/weather.py)
+
+# --- Survival models ---
+# scripts 05, 07, 09, 10, 12, 13; revision/RE1_A1, RE1_A3, RE1_A4, RE1_S2;
+# and the RE3_R1C4 / R1C7 / R1C8 / R1C10 sensitivity refits
+lifelines==0.30.0
+
+# --- Statistics and diagnostics ---
+# scipy:        revision/RE1_A3, RE1_A4, RE1_A5, RE1_S2, RE1_S3, RE1_S4
+# statsmodels:  revision/RE1_A5 -- cluster-robust standard errors reported in
+#               "Hierarchical Structure and Dependence". NOTE: this import sits
+#               inside a try/except that returns None on failure, so a missing
+#               statsmodels yields no error, only a missing result.
+# scikit-learn: revision/RE1_A2 -- least-squares fits in the endogeneity simulation
+scipy==1.12.0
+statsmodels==0.14.1
+scikit-learn==1.7.2
+
+# --- Figures ---
+# scripts 04, 08, 09, 11-15 and most revision/RE1_, RE2_ scripts
+matplotlib==3.8.2
+seaborn==0.13.2
