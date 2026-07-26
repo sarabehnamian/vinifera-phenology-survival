@@ -14,26 +14,38 @@
 # --- Core: required by the vinifera_phenology package ---
 pandas==2.2.0
 numpy==1.26.4
-openpyxl==3.1.2          # pandas engine for .xlsx read/write -- VERIFY THIS VERSION
+openpyxl==3.1.2          # pandas engine for .xlsx read/write
 requests==2.32.5         # NASA POWER API queries (02_..., vinifera_phenology/weather.py)
 
 # --- Survival models ---
-# scripts 05, 07, 09, 10, 12, 13; revision/RE1_A1, RE1_A3, RE1_A4, RE1_S2;
-# and the RE3_R1C4 / R1C7 / R1C8 / R1C10 sensitivity refits
+# scripts 05, 07, 09, 10, 12, 13; supplementary_analyses/A1, A3, A4, S2;
+# and the sensitivity refits: base_temperature_sensitivity,
+# homogeneous_subset, bbch_intensity_endpoint, recovery_check,
+# water_balance, window_length_sensitivity
 lifelines==0.30.0
 
 # --- Statistics and diagnostics ---
-# scipy:        revision/RE1_A3, RE1_A4, RE1_A5, RE1_S2, RE1_S3, RE1_S4
-# statsmodels:  revision/RE1_A5 -- cluster-robust standard errors reported in
-#               "Hierarchical Structure and Dependence". NOTE: this import sits
-#               inside a try/except that returns None on failure, so a missing
-#               statsmodels yields no error, only a missing result.
-# scikit-learn: revision/RE1_A2 -- least-squares fits in the endogeneity simulation
+# scipy:        supplementary_analyses/A3, A4, A5, S2, S3, S4
+# statsmodels:  supplementary_analyses/A5 -- cluster-robust standard errors
+#               reported in "Hierarchical Structure and Dependence" and used
+#               for the approximate clustering correction in that subsection.
+#               NOTE: this import sits inside a try/except that returns None
+#               on failure, so a missing statsmodels yields no error, only a
+#               missing result. Verify statsmodels is installed before
+#               trusting the SE inflation factors (0.72 and 2.08).
+# scikit-learn: supplementary_analyses/A2 -- least-squares fits in the
+#               endogeneity simulation
 scipy==1.12.0
 statsmodels==0.14.1
 scikit-learn==1.7.2
 
 # --- Figures ---
-# scripts 04, 08, 09, 11-15 and most revision/RE1_, RE2_ scripts
+# scripts 04, 08, 09, 11-15 and most supplementary_analyses/ scripts
 matplotlib==3.8.2
 seaborn==0.13.2
+
+# --- Mapping (Figure 1) ---
+# supplementary_analyses/site_map.py -- Albers equal-area conic projection,
+# geodesic scale bar, meridian-aligned north arrow, Natural Earth I raster
+cartopy==0.22.0
+pillow==12.3.0
